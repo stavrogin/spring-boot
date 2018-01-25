@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS DATA_SOURCE (
-	datasource_id SMALLINT PRIMARY KEY NOT NULL,
+	datasource_id SMALLINT PRIMARY KEY auto_increment,
 	name VARCHAR NULL
 );
 
