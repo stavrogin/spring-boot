@@ -4,11 +4,11 @@ CREATE TABLE IF NOT EXISTS DATA_SOURCE (
 );
 
 CREATE TABLE IF NOT EXISTS WEATHER_DATA (
-	id BIGINT PRIMARY KEY auto_increment, 
+	weatherdata_id BIGINT PRIMARY KEY auto_increment, 
 	ts TIMESTAMP NOT NULL,
-	pressure REAL NULL,
-	temperature REAL NULL,
-	altitude REAL NULL,
+	pressure DOUBLE NULL,
+	temperature DOUBLE NULL,
+	altitude DOUBLE NULL,
 	description VARCHAR NULL,
 	datasource_id SMALLINT,
 	FOREIGN KEY (datasource_id) REFERENCES DATA_SOURCE(datasource_id)

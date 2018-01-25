@@ -13,8 +13,6 @@ import it.flavio.springrest.database.model.DataSource;
 import it.flavio.springrest.model.Greeting;
 import it.flavio.springrest.mybatis.mapper.DataSourceMapper;
 
-
-
 @RestController
 public class GreetingController {
 	
@@ -24,7 +22,7 @@ public class GreetingController {
 	@Autowired
     private DataSourceMapper dataSourceMapper;
 
-	@RequestMapping(name = "/greeting", method = RequestMethod.GET)
+	@RequestMapping(value="/greeting",method=RequestMethod.GET)
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		List<DataSource> dataSources = dataSourceMapper.findAllDataSources();
 		dataSources.forEach(d -> System.out.println(d.getDatasourceId() + " - " + d.getName()));

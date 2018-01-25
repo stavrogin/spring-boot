@@ -1,5 +1,9 @@
 package it.flavio.springrest.database.model;
 
+/**
+ * DB model class representing DATA_SOURCE table
+ * @author flavio
+ */
 public class DataSource {
 
 	private Short datasourceId;
