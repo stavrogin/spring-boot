@@ -1,4 +1,4 @@
-package it.flavio.springrest.database.model;
+package it.flavio.springrest.database.table;
 
 /**
  * DB model class representing DATA_SOURCE table

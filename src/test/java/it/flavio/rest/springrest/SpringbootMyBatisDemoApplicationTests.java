@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import it.flavio.springrest.database.model.DataSource;
+import it.flavio.springrest.database.table.DataSource;
 import it.flavio.springrest.mybatis.mapper.DataSourceMapper;
 
 public class SpringbootMyBatisDemoApplicationTests {

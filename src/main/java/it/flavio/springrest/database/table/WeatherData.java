@@ -1,35 +1,44 @@
-package it.flavio.springrest.model;
+package it.flavio.springrest.database.table;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import java.util.Date;
 
-@JsonInclude(Include.NON_NULL)
-public class WeatherDataBody {
+/**
+ * DB model class representing WEATHER_DATA table
+ * @author flavio
+ */
+public class WeatherData {
 	
-	private String timestamp;
-	private Double temperature;
+	private Long weatherdataId;
+	private Date ts;
 	private Double pressure;
+	private Double temperature;
 	private Double altitude;
 	private String description;
 	private Short datasourceId;
 	
-	public String getTimestamp() {
-		return timestamp;
+	public Long getWeatherdataId() {
+		return weatherdataId;
 	}
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setWeatherdataId(Long weatherdataId) {
+		this.weatherdataId = weatherdataId;
 	}
-	public Double getTemperature() {
-		return temperature;
+	public Date getTs() {
+		return ts;
 	}
-	public void setTemperature(Double temperature) {
-		this.temperature = temperature;
+	public void setTs(Date ts) {
+		this.ts = ts;
 	}
 	public Double getPressure() {
 		return pressure;
 	}
 	public void setPressure(Double pressure) {
 		this.pressure = pressure;
+	}
+	public Double getTemperature() {
+		return temperature;
+	}
+	public void setTemperature(Double temperature) {
+		this.temperature = temperature;
 	}
 	public Double getAltitude() {
 		return altitude;
@@ -49,5 +58,5 @@ public class WeatherDataBody {
 	public void setDatasourceId(Short datasourceId) {
 		this.datasourceId = datasourceId;
 	}
-	
+
 }

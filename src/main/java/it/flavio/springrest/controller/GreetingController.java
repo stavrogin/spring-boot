@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.flavio.springrest.database.model.DataSource;
+import it.flavio.springrest.database.table.DataSource;
 import it.flavio.springrest.model.Greeting;
 import it.flavio.springrest.mybatis.mapper.DataSourceMapper;
 

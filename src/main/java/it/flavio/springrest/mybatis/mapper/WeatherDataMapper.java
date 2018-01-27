@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 
-import it.flavio.springrest.database.model.WeatherData;
+import it.flavio.springrest.database.table.WeatherData;
 
 public interface WeatherDataMapper {
 	
