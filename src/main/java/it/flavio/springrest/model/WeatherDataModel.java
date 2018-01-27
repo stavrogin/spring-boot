@@ -9,21 +9,28 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class WeatherDataModel {
 	
+	private Long weatherdataId;
 	//http://www.baeldung.com/jackson-serialize-dates
 	@JsonFormat
     (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	private Date timestamp;
+	private Date ts;
 	private Double temperature;
 	private Double pressure;
 	private Double altitude;
 	private String description;
 	private Short datasourceId;
 
-	public Date getTimestamp() {
-		return timestamp;
+	public Long getWeatherdataId() {
+		return weatherdataId;
 	}
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public void setWeatherdataId(Long weatherdataId) {
+		this.weatherdataId = weatherdataId;
+	}
+	public Date getTs() {
+		return ts;
+	}
+	public void setTs(Date ts) {
+		this.ts = ts;
 	}
 	public Double getTemperature() {
 		return temperature;

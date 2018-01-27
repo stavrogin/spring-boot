@@ -88,6 +88,11 @@ public class WeatherDataDTO {
 			return this;
 		}
 		
+		public WeatherDataDTOBuilder datasourceId(Short datasourceId) {
+			this.datasourceId = datasourceId;
+			return this;
+		}
+		
 		public WeatherDataDTO build() {
 			return new WeatherDataDTO(this);
 		}

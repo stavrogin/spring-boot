@@ -12,14 +12,19 @@ import it.flavio.springrest.database.table.WeatherData;
 
 public interface WeatherDataMapper {
 	
-	@Insert("insert into weather_data(ts, pressure, temperature, altitude, description, datasource_id) values(#{ts}, #{pressure}, #{temperature}, #{altitude}, #{description}, #{datasourceId})")
-    @SelectKey(statement="call identity()", keyProperty="weatherdataId", before=false, resultType=Long.class)
+	@Insert("insert into "
+			+ "weather_data(ts, pressure, temperature, altitude, description, datasource_id) "
+			+ "values(#{ts}, #{pressure}, #{temperature}, #{altitude}, #{description}, #{datasourceId})"
+	)
+    @SelectKey(statement="call scope_identity()", keyProperty="weatherdataId", keyColumn="weatherdata_id", before=false, resultType=Long.class)
 	void insertWeatherData(WeatherData weatherData);
 	
 	@Results({
         @Result(property = "weatherdataId", column = "weatherdata_id"),
+        @Result(property = "datasourceId", column = "datasource_id")
       })
-	@Select("select id, ts, pressure, temperature, altitude, description from weather_data")
+	@Select("select weatherdata_id, ts, pressure, temperature, altitude, description, datasource_id "
+			+ "from weather_data")
     List<WeatherData> findAllWeatherData();
 	
 }

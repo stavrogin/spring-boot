@@ -22,16 +22,24 @@ public class WeatherDataDAOImpl implements WeatherDataDAO {
 	public List<WeatherDataDTO> findAllWeatherData() {
 		List<WeatherData> weatherDataList = weatherDataMapper.findAllWeatherData();
 		List<WeatherDataDTO> weatherDataDTOList = new ArrayList<>();
-		weatherDataList.forEach(d -> weatherDataDTOList.add(buildWeatherDataDto(d)));
+		weatherDataList.forEach(d -> weatherDataDTOList.add(buildWeatherDataDTO(d)));
 		return weatherDataDTOList;
 	}
 	
+	@Override
+	public WeatherDataDTO insertWeatherData(WeatherDataDTO weatherDataDTO) {
+		WeatherData weatherData = buildWeatherData(weatherDataDTO);
+		weatherDataMapper.insertWeatherData(weatherData);
+		weatherDataDTO = buildWeatherDataDTO(weatherData);
+		return weatherDataDTO;
+	}
+	
 	/**
-	 * Builds DTO from weather data model
+	 * Builds DTO from weather data DB model
 	 * @param weatherData the weather data model
-	 * @return the weather data dto list
+	 * @return the weather data dto 
 	 */
-	private WeatherDataDTO buildWeatherDataDto(WeatherData weatherData) {
+	private WeatherDataDTO buildWeatherDataDTO(WeatherData weatherData) {
 		WeatherDataDTO dto = new WeatherDataDTO.WeatherDataDTOBuilder()
 				.weatherdataId(weatherData.getWeatherdataId())
 				.ts(weatherData.getTs())
@@ -39,7 +47,26 @@ public class WeatherDataDAOImpl implements WeatherDataDAO {
 				.temperature(weatherData.getTemperature())
 				.altitude(weatherData.getAltitude())
 				.description(weatherData.getDescription())
+				.datasourceId(weatherData.getDatasourceId())
 				.build();
 		return dto;
 	}
+	
+	/**
+	 * Builds data DB model from DTO
+	 * @param weatherDataDTO the DTO
+	 * @return the weather data 
+	 */
+	private WeatherData buildWeatherData(WeatherDataDTO dto) {
+		WeatherData weatherData = new WeatherData();
+		weatherData.setWeatherdataId(dto.getWeatherdataId());
+		weatherData.setTs(dto.getTs());
+		weatherData.setPressure(dto.getPressure());
+		weatherData.setTemperature(dto.getTemperature());
+		weatherData.setAltitude(dto.getAltitude());
+		weatherData.setDescription(dto.getDescription());
+		weatherData.setDatasourceId(dto.getDatasourceId());
+		return weatherData;
+	}
+	
 }

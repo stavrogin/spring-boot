@@ -12,4 +12,11 @@ public interface WeatherDataDAO {
 	 */
 	List<WeatherDataDTO> findAllWeatherData();
 	
+	/**
+	 * Inserts a new weather data point
+	 * @param weatherDataDTO the weather data dto
+	 * @return true if the insert was successful
+	 */
+	WeatherDataDTO insertWeatherData(WeatherDataDTO weatherDataDTO);
+	
 }

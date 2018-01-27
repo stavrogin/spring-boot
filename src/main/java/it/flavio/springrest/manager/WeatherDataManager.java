@@ -16,4 +16,11 @@ public interface WeatherDataManager {
 	 */
 	List<WeatherDataModel> findAllWeatherData();
 	
+	/**
+	 * Inserts a weather data point
+	 * @param weatherDataModel the weather data to insert
+	 * @return the inserted id
+	 */
+	public WeatherDataModel insertWeatherData(WeatherDataModel weatherDataModel);
+	
 }

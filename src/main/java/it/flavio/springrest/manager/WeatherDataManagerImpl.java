@@ -1,6 +1,7 @@
 package it.flavio.springrest.manager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class WeatherDataManagerImpl implements WeatherDataManager {
 		return modelList;
 	}
 	
+	@Override
+	public WeatherDataModel insertWeatherData(WeatherDataModel weatherDataModel) {
+		WeatherDataDTO dto = buildWeatherDataDTO(weatherDataModel);
+		dto = weatherDataDAO.insertWeatherData(dto);
+		WeatherDataModel model = buildWeatherDataModel(dto);
+		return model;
+	}
+	
 	/**
 	 * Builds the jackson weather data model from dto
 	 * @param dto the dto
@@ -29,12 +38,30 @@ public class WeatherDataManagerImpl implements WeatherDataManager {
 	 */
 	private WeatherDataModel buildWeatherDataModel(WeatherDataDTO dto) {
 		WeatherDataModel model = new WeatherDataModel();
-		model.setTimestamp(dto.getTs());
+		model.setWeatherdataId(dto.getWeatherdataId());
+		model.setTs(dto.getTs());
 		model.setDatasourceId(dto.getDatasourceId());
 		model.setPressure(dto.getPressure());
 		model.setTemperature(dto.getTemperature());
 		model.setAltitude(dto.getAltitude());
 		return model;
+	}
+	
+	/**
+	 * Builds DTO from weather data jackson model
+	 * @param weatherDataModel the weather data model
+	 * @return the weather data dto list
+	 */
+	private WeatherDataDTO buildWeatherDataDTO(WeatherDataModel weatherDataModel) {
+		WeatherDataDTO dto = new WeatherDataDTO.WeatherDataDTOBuilder()
+				.ts(new Date())
+				.pressure(weatherDataModel.getPressure())
+				.temperature(weatherDataModel.getTemperature())
+				.altitude(weatherDataModel.getAltitude())
+				.description(weatherDataModel.getDescription())
+				.datasourceId(weatherDataModel.getDatasourceId())
+				.build();
+		return dto;
 	}
 
 }
