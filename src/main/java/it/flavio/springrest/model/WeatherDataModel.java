@@ -12,7 +12,7 @@ public class WeatherDataModel {
 	private Long weatherdataId;
 	//http://www.baeldung.com/jackson-serialize-dates
 	@JsonFormat
-    (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss", locale = "it_IT")
 	private Date ts;
 	private Double temperature;
 	private Double pressure;
