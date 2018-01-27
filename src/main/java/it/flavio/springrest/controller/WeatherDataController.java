@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,12 @@ public class WeatherDataController {
 	public WeatherDataModel saveWeatherData(@RequestBody WeatherDataModel weatherDataModel) {
 		WeatherDataModel response = weatherDataManager.insertWeatherData(weatherDataModel);
 		return response;
+	}
+	
+	@RequestMapping(value="/weatherdata/{weatherdataId}", method=RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteWeatherData(@PathVariable Long weatherdataId) {
+		weatherDataManager.deleteWeatherData(weatherdataId);
 	}
 	
 }

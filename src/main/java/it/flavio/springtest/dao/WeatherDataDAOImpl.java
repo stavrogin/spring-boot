@@ -34,6 +34,13 @@ public class WeatherDataDAOImpl implements WeatherDataDAO {
 		return weatherDataDTO;
 	}
 	
+	@Override
+	public boolean deleteWeatherData(Long weatherdataId) {
+		weatherDataMapper.deleteWeatherData(weatherdataId);
+		return true;
+	}
+	
+	
 	/**
 	 * Builds DTO from weather data DB model
 	 * @param weatherData the weather data model
@@ -68,5 +75,5 @@ public class WeatherDataDAOImpl implements WeatherDataDAO {
 		weatherData.setDatasourceId(dto.getDatasourceId());
 		return weatherData;
 	}
-	
+
 }

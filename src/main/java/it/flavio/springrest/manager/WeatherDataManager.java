@@ -21,6 +21,13 @@ public interface WeatherDataManager {
 	 * @param weatherDataModel the weather data to insert
 	 * @return the inserted id
 	 */
-	public WeatherDataModel insertWeatherData(WeatherDataModel weatherDataModel);
+	WeatherDataModel insertWeatherData(WeatherDataModel weatherDataModel);
+	
+	/**
+	 * Deletes a weather data
+	 * @param weahterdataId the weather data id
+	 * @return true if the weather data has been deleted
+	 */
+	boolean deleteWeatherData(Long weatherdataId);
 	
 }

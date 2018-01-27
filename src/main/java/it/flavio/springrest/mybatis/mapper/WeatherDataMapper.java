@@ -2,6 +2,7 @@ package it.flavio.springrest.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -26,5 +27,8 @@ public interface WeatherDataMapper {
 	@Select("select weatherdata_id, ts, pressure, temperature, altitude, description, datasource_id "
 			+ "from weather_data")
     List<WeatherData> findAllWeatherData();
+	
+	@Delete("delete from weather_data where weatherdata_id = #{weatherdataId}")
+	void deleteWeatherData(Long weatherdataId);
 	
 }

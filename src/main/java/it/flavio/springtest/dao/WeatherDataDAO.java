@@ -19,4 +19,10 @@ public interface WeatherDataDAO {
 	 */
 	WeatherDataDTO insertWeatherData(WeatherDataDTO weatherDataDTO);
 	
+	/**
+	 * Deletes a weather data by id
+	 * @param weatherdataId the weather data id
+	 * @return true if the record was deleted
+	 */
+	boolean deleteWeatherData(Long weatherdataId);
 }

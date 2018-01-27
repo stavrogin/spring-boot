@@ -31,6 +31,12 @@ public class WeatherDataManagerImpl implements WeatherDataManager {
 		return model;
 	}
 	
+	@Override
+	public boolean deleteWeatherData(Long weatherdataId) {
+		boolean deleted = weatherDataDAO.deleteWeatherData(weatherdataId);
+		return deleted;
+	}
+	
 	/**
 	 * Builds the jackson weather data model from dto
 	 * @param dto the dto
