@@ -17,6 +17,12 @@ public interface WeatherDataManager {
 	List<WeatherDataModel> findAllWeatherData();
 	
 	/**
+	 * Finds all the weather data going back from the passed-in dats
+	 * @return the list of the weather data to be sent as output
+	 */
+	List<WeatherDataModel> findWeatherData(long daysBack);
+	
+	/**
 	 * Inserts a weather data point
 	 * @param weatherDataModel the weather data to insert
 	 * @return the inserted id

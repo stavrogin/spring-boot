@@ -24,6 +24,14 @@ public class WeatherDataManagerImpl implements WeatherDataManager {
 	}
 	
 	@Override
+	public List<WeatherDataModel> findWeatherData(long daysBack) {
+		List<WeatherDataDTO> dtoList = weatherDataDAO.findWeatherData(daysBack);
+		List<WeatherDataModel> modelList = new ArrayList<>(dtoList.size()); 
+		dtoList.forEach(dto -> modelList.add(buildWeatherDataModel(dto)));
+		return modelList;
+	}
+	
+	@Override
 	public WeatherDataModel insertWeatherData(WeatherDataModel weatherDataModel) {
 		WeatherDataDTO dto = buildWeatherDataDTO(weatherDataModel);
 		dto = weatherDataDAO.insertWeatherData(dto);

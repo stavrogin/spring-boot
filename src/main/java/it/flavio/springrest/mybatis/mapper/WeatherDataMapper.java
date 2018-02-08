@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -28,7 +29,19 @@ public interface WeatherDataMapper {
 			+ "from weather_data")
     List<WeatherData> findAllWeatherData();
 	
+	@Results({
+        @Result(property = "weatherdataId", column = "weatherdata_id"),
+        @Result(property = "datasourceId", column = "datasource_id")
+      })
+	@Select("select weatherdata_id, ts, pressure, temperature, altitude, description, datasource_id "
+			+ "from weather_data "
+			+ "where ts > #{dateFrom}")
+    List<WeatherData> findAllWeatherDataFromDate(@Param("dateFrom") String dateFrom);
+	
 	@Delete("delete from weather_data where weatherdata_id = #{weatherdataId}")
 	void deleteWeatherData(Long weatherdataId);
+	
+	@Delete("truncate table weather_data")
+	void truncateWeatherData();
 	
 }

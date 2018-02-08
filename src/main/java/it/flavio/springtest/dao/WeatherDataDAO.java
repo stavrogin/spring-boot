@@ -12,6 +12,14 @@ public interface WeatherDataDAO {
 	 */
 	List<WeatherDataDTO> findAllWeatherData();
 	
+	
+	/**
+	 * Get all stored weather data starting from the passed-in days back
+	 * @param daysBack the days back to start geathering weather data
+	 * @return the stored weather data
+	 */
+	List<WeatherDataDTO> findWeatherData(long daysBack);
+	
 	/**
 	 * Inserts a new weather data point
 	 * @param weatherDataDTO the weather data dto

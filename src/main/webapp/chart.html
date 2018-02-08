@@ -8,7 +8,16 @@
 </div>
 
 <script>
-var url = 'http://192.168.1.23:8080/meteo/weatherdata';
+var url_string = window.location.href;
+var url = new URL(url_string);
+var daysBack = url.searchParams.get("daysBack");
+
+var url;
+if (daysBack == null) {
+	url = 'http://192.168.1.24:8080/meteo/weatherdata';
+} else {
+	url = 'http://192.168.1.24:8080/meteo/weatherdata?daysBack='+daysBack;
+}
 var temperatures = [];
 var pressures = [];
 var timestamps = [];

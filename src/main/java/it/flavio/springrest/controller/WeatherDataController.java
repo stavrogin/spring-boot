@@ -24,8 +24,13 @@ public class WeatherDataController {
     private WeatherDataManager weatherDataManager;
 
 	@RequestMapping(value="/weatherdata", method=RequestMethod.GET)
-	public ResponseEntity<List<WeatherDataModel>> getWeatherData(@RequestParam(value = "back", defaultValue = "30") String name) {
-		List<WeatherDataModel> weatherDataList = weatherDataManager.findAllWeatherData();
+	public ResponseEntity<List<WeatherDataModel>> getWeatherData(@RequestParam(value = "daysBack" , required=false) Long daysBack) {
+		List<WeatherDataModel> weatherDataList;
+		if (daysBack != null) {
+			weatherDataList = weatherDataManager.findWeatherData(daysBack.longValue());
+		} else {
+			weatherDataList = weatherDataManager.findAllWeatherData();
+		}
 		HttpHeaders responseHeaders = new HttpHeaders();
 	    responseHeaders.set("Access-Control-Allow-Origin", "*");
 	    return new ResponseEntity<List<WeatherDataModel>>(weatherDataList, responseHeaders, HttpStatus.OK);

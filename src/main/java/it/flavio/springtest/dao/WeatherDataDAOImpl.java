@@ -1,5 +1,8 @@
 package it.flavio.springtest.dao;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,8 @@ import it.flavio.springrest.mybatis.mapper.WeatherDataMapper;
 import it.flavio.springtest.dto.WeatherDataDTO;
 
 public class WeatherDataDAOImpl implements WeatherDataDAO {
+	
+	private static final String H2_TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	@Autowired
 	private WeatherDataMapper weatherDataMapper;
@@ -24,6 +29,24 @@ public class WeatherDataDAOImpl implements WeatherDataDAO {
 		List<WeatherDataDTO> weatherDataDTOList = new ArrayList<>();
 		weatherDataList.forEach(d -> weatherDataDTOList.add(buildWeatherDataDTO(d)));
 		return weatherDataDTOList;
+	}
+	
+	@Override
+	public List<WeatherDataDTO> findWeatherData(long daysBack) {
+		LocalDateTime now = LocalDateTime.now().minusDays(daysBack).truncatedTo(ChronoUnit.DAYS);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(H2_TIMESTAMP_FORMAT);
+		String dateString = now.format(formatter);
+		List<WeatherData> weatherDataList = weatherDataMapper.findAllWeatherDataFromDate(dateString);
+		List<WeatherDataDTO> weatherDataDTOList = new ArrayList<>();
+		weatherDataList.forEach(d -> weatherDataDTOList.add(buildWeatherDataDTO(d)));
+		return weatherDataDTOList;
+	}
+	
+	public static void main(String[] args) {
+		LocalDateTime now = LocalDateTime.now().minusDays(1).truncatedTo(ChronoUnit.DAYS);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(H2_TIMESTAMP_FORMAT);
+		String dateString = now.format(formatter);
+		System.out.println(dateString);
 	}
 	
 	@Override
